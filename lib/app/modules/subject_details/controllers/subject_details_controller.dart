@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import '../../../data/models/subject_model.dart';
 import '../../../data/services/content_service.dart';
 import '../../../data/services/ad_service.dart';
-import '../../../routes/app_pages.dart';
 
 class SubjectDetailsController extends GetxController {
   final ContentService _contentService = Get.find<ContentService>();
@@ -62,16 +61,5 @@ class SubjectDetailsController extends GetxController {
       return allLessons[index - 1].id;
     }
     return null;
-  }
-
-
-  Future<void> navigateToPayment() async {
-    if (subject.value != null) {
-      final result = await Get.toNamed(Routes.PAYMENT, arguments: subject.value);
-      if (result == true) {
-        // Payment was successful/submitted, refresh details
-        fetchSubjectDetails();
-      }
-    }
   }
 }

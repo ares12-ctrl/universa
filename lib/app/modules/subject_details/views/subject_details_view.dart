@@ -61,7 +61,7 @@ class SubjectDetailsView extends GetView<SubjectDetailsController> {
         if (controller.isLoading.value || controller.subject.value == null) {
           return const SizedBox.shrink();
         }
-        return _buildBottomAction(controller.subject.value!, primaryColor, secondaryColor);
+        return _buildBottomAction(controller.subject.value!);
       }),
     );
   }
@@ -255,7 +255,7 @@ class SubjectDetailsView extends GetView<SubjectDetailsController> {
     );
   }
 
-  Widget _buildBottomAction(Subject subject, Color primaryColor, Color secondaryColor) {
+  Widget _buildBottomAction(Subject subject) {
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -317,34 +317,13 @@ class SubjectDetailsView extends GetView<SubjectDetailsController> {
                     ),
                   ),
                 )
-              : Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 55,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [secondaryColor, primaryColor]),
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(color: primaryColor.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 4)),
-                          ],
-                        ),
-                        child: ElevatedButton(
-                          onPressed: () => controller.navigateToPayment(),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            shadowColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                          ),
-                          child: Text(
-                            'اشترك الآن - ${subject.priceEgp} ج.م',
-                            style: GoogleFonts.cairo(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+              : Text(
+                  'يمكنك الاشتراك في هذه المادة من خلال الموقع الرسمي',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.cairo(
+                    fontSize: 14,
+                    color: Colors.white60,
+                  ),
                 )),
       ),
     );
